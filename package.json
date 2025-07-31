@@ -1,0 +1,14 @@
+{
+  "name": "Scrim-s05qcfg",
+  "description": "https://scrimba.com/fullstack-path-c0fullstack/~05tv",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}
