@@ -1,12 +1,12 @@
 import { dates } from "/utils/dates"
 import OpenAI from "openai"
 
-console.log(
-  "process.env.POLYGON_API_KEY: ",
-  import.meta.env.VITE_POLYGON_API_KEY
-)
+// console.log(
+//   "process.env.POLYGON_API_KEY: ",
+//   import.meta.env.VITE_POLYGON_API_KEY
+// )
 const openAiAPIKey = import.meta.env.VITE_OPENAI_API_KEY
-console.log("process.env.OPENAI_API_KEY: ", import.meta.env.VITE_OPENAI_API_KEY)
+// console.log("process.env.OPENAI_API_KEY: ", import.meta.env.VITE_OPENAI_API_KEY)
 
 const tickersArr = []
 
@@ -82,7 +82,8 @@ async function fetchReport(data) {
     {
       role: "system",
       content:
-        "You are a trusted stock analyst who gives advice on whether to buy or sell stocks based on information from Polygon.io."
+        `You are a stock analyst who gives advice on whether to buy or sell stocks based on information from Polygon.io. 
+        `
     },
     {
       role: "user",
@@ -91,8 +92,10 @@ async function fetchReport(data) {
   ]
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4.1",
-      messages: messages
+      model: "gpt-4.1-nano",
+      messages: messages,
+      max_tokens: 1000,
+      temperature: 1,
     })
     console.log("response: ", response)
     renderReport(response.choices[0].message.content)
